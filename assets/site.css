@@ -1,0 +1,91 @@
+/* Blossom monitoring site. Matches blossomsolar.com: Poppins, black on white,
+   cyan (#00c0d8) only as the brand accent from the logo mark. */
+@font-face { font-family: "Poppins"; font-weight: 300; font-style: normal; font-display: swap; src: url("fonts/poppins-300.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/poppins-500.woff2") format("woff2"); }
+
+:root {
+  --ink: #000;
+  --muted: #555;
+  --line: #e6e6e6;
+  --paper: #fff;
+  --cyan: #00c0d8;
+  --radius: 6.4px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font: 300 17px/1.6 "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bar {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+header { padding: 22px 24px 0; }
+header img { display: block; width: 190px; height: auto; }
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 48px 24px 56px;
+}
+
+.mark {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin-bottom: 24px;
+}
+.mark svg { width: 30px; height: 30px; }
+.mark.ok { background: var(--cyan); }
+.mark.no { background: #f1f1f1; }
+
+h1 { font-weight: 500; font-size: 2rem; line-height: 1.2; margin: 0 0 14px; }
+.lead { font-size: 1.15rem; margin: 0 0 18px; }
+p { margin: 0 0 14px; }
+.muted { color: var(--muted); font-size: 0.95rem; }
+
+.btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: #000;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: var(--radius);
+}
+.btn:hover { background: #222; }
+
+.state[hidden] { display: none; }
+
+footer {
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  padding: 20px 24px;
+  text-align: center;
+}
+footer a { color: #fff; }
+footer .dot { color: var(--cyan); padding: 0 6px; }
+
+@media (min-width: 720px) {
+  header { padding: 28px 48px 0; }
+  header img { width: 220px; }
+  main { padding-top: 72px; }
+  h1 { font-size: 2.4rem; }
+}

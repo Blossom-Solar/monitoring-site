@@ -3,21 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
-<title>Tesla connected | Blossom Solar Monitoring</title>
-<style>
-  body { margin: 0; font: 17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1d2a24; background: #f7f8f5; }
-  main { max-width: 36rem; margin: 18vh auto 0; padding: 0 20px; }
-  h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
-  p { margin: 0 0 1rem; color: #43524a; }
-</style>
+<title>Tesla connected | Blossom</title>
+<link rel="preload" href="../../assets/fonts/poppins-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
 <body>
+<div class="bar">Blossom monitoring</div>
+<header><a href="https://www.blossomsolar.com"><img src="../../assets/blossom-logo.png" alt="Blossom: solar, electrical, hvac" width="1000" height="334"></a></header>
+
 <main>
-  <h1>Thanks, your Tesla is connected to Blossom Solar monitoring</h1>
-  <p>You can close this page. Blossom Solar can now see how your solar and Powerwall are performing. We can't change any of your settings.</p>
-  <p>You can remove Blossom's access at any time from your Tesla account.</p>
+  <section class="state" id="ok">
+    <div class="mark ok" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1>You're connected</h1>
+    <p class="lead">Your Tesla is now connected to Blossom monitoring.</p>
+    <p>Blossom can now see how your solar and Powerwall are performing, so we can spot problems early.</p>
+    <p>You can close this page.</p>
+    <p class="muted">You can remove Blossom's access any time in your Tesla account.</p>
+  </section>
+
+  <section class="state" id="no" hidden>
+    <div class="mark no" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg>
+    </div>
+    <h1>Not connected</h1>
+    <p class="lead">No changes were made to your Tesla account.</p>
+    <p>If this was a mistake, contact Blossom and we'll send you a new link.</p>
+  </section>
+
+  <a class="btn" href="https://www.blossomsolar.com">Visit blossomsolar.com</a>
 </main>
+
+<footer>Blossom<span class="dot">·</span>solar<span class="dot">·</span>electrical<span class="dot">·</span>hvac</footer>
+
+<script>
+  // Tesla sends ?error=... when the homeowner declines. The one-time ?code is never read,
+  // shown or sent anywhere by this page; it is stripped from the address bar immediately.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.has("error")) {
+      document.getElementById("ok").hidden = true;
+      document.getElementById("no").hidden = false;
+      document.title = "Not connected | Blossom";
+    }
+    if (location.search) history.replaceState(null, "", location.pathname);
+  })();
+</script>
 </body>
 </html>
